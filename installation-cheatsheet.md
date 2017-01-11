@@ -1,4 +1,4 @@
-# Installation using HomeBrew
+# Installation using Homebrew
 
 You may already have MongoDB installed on your system, let's check by typing `mongod` in terminal (note the lack of a "b" at the end").
 
@@ -19,9 +19,9 @@ To start the database engine, type `mongod` in terminal.
 
 Press `control-c` to stop the engine. **Don't just shut the terminal window.**
 
-MongoDB installs with a client app, a JavaScript-based shell, that allows us to interact with MongoDB directly.
+MongoDB installs with a client app, a JavaScript-based shell, that allows us to interact with MongoDB directly. To enter the shell open another terminal window and type
 
-Start the app in terminal by typing `mongo`.
+ `mongo`
 
 The app will load and the prompt will change to `>`.
 
