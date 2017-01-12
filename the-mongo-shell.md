@@ -8,9 +8,9 @@ You will find the Mongo Shell handy for examining and modifying data while devel
 
 ### The Mongo Shell
 
-Make sure that the MongoDB engine (`mongod`) is running then...
+Make sure that the MongoDB server (`mongod`) is running in one terminal window then...
 
-Start the app in terminal by typing `mongo`
+Start the app in another terminal by typing `mongo`
 
 The app will load and change the prompt will change to `>`
 
@@ -22,7 +22,7 @@ Show the name of the currently active database: `> db`
 
 Switch to a different database: `> use [name of database to switch to]`
 
-Let's switch to the `local` database: `> use local`
+Let's switch to a database called `sandbox`: `> use sandbox`
 
 Show the collections of the current database `> show collections`
 
@@ -34,6 +34,8 @@ To create a new database in the Mongo Shell, we simply have to _use_ the databas
 > use myDB
 ```
 
+> Question! Above we said "use sandbox" did we create it?
+
 ### Inserting Data into a Collection
 
 This is how we can create and insert a document into a collection named _people_:
@@ -44,6 +46,7 @@ This is how we can create and insert a document into a collection named _people_
 ... age: 21         // shell, indicating multi-line input mode
 })
 ```
+
 Using a collection for the first time creates it!
 
 __YOU DO: Let's add another person to the _people_ collection. But this time, add an additional field called _birthDate_ and assign it a date value with something like this: *birthDate: new Date('3/21/1981')*__
@@ -106,37 +109,6 @@ Be sure to include the closing paren of the _insert_ method.
 
 - **What method adds documents to a collection?**
 
-### Embedded Documents
-
-In MongoDB, by design, it is common to __embed__ related data in the parent document.
-
-However, MongoDB works best when related data is embedded. Embedded data allows MongoDB to read and return large amounts of data far more quickly than a SQL database that requires join operations.
-
-To demonstrate __embedding__, we will add another person to our _people_ collection, but this time we want to include contact info. A person may have several ways to contact them, so we will be modeling a typical one-to-many relationship: A Person has many Contacts / A Contact belongs to a Person
-
-```
-> db.people.insert({
-... name: "Manny",
-... age: 33,
-... contacts: [
-... {
-... type: "email",
-... contact: "manny@domain.com"
-... },
-... {
-... type: "mobile",
-... contact: "(555) 555-5555"
-... }
-... ]
-... })
-```
-
-The embedded data objects, like we see above, are called _subdocuments_.
-
-The above approach of embedding "contact" data provides a great deal of flexibility in what types and how many contacts a person may have.
-
-Another example of a data model where embedding works well is the typical a _post_ has many _comments_ scenario. Embedding comments within a _post_ document works great because those comments don't make sense without the post that they belong to.
-
 ## Querying Data
 
 We've seen how to retrieve all of the documents in a collection using the `find()` method.
@@ -155,7 +127,7 @@ Here's how we can use MongoDB's `$gt` query operator to return all _people_ docu
 
 MongoDB comes with a slew of built-in [query operators](http://docs.mongodb.org/manual/reference/operator/query/#query-selectors) we can use to write complex queries.
 
-In addition to selecting which data is returned, we can modify how that data is returned by limiting the number of documents returned, sorting the documents, and by projecting which fields are returned.
+In addition to selecting which data is returned, we can modify __how__ that data is returned by limiting the number of documents returned, sorting the documents, and by projecting which fields are returned.
 
 This sorts our age query and sorts by _name_:
 
@@ -166,7 +138,7 @@ The "1" indicates ascending order.
 
 [This documentation](http://docs.mongodb.org/manual/core/read-operations-introduction/) provides more detail about reading data.
 
->Notice that the `query object`, is just that, a JS object with key:value pairs.
+> Notice that the `query object`, is just that, a JS object with key:value pairs.
 
 ## Updating Data
 
@@ -201,5 +173,34 @@ Otherwise, specify a criteria to remove all documents that match it:
 >db.people.remove( { age: { $lt: 16 } } )
 ```
 
+### Embedded Documents
 
+In MongoDB, by design, it is common to __embed__ related data in the parent document.
+
+However, MongoDB works best when related data is embedded. Embedded data allows MongoDB to read and return large amounts of data far more quickly than a SQL database that requires join operations.
+
+To demonstrate __embedding__, we will add another person to our _people_ collection, but this time we want to include contact info. A person may have several ways to contact them, so we will be modeling a typical one-to-many relationship: A Person has many Contacts / A Contact belongs to a Person
+
+```
+> db.people.insert({
+... name: "Manny",
+... age: 33,
+... contacts: [
+... {
+... type: "email",
+... contact: "manny@domain.com"
+... },
+... {
+... type: "mobile",
+... contact: "(555) 555-5555"
+... }
+... ]
+... })
+```
+
+The embedded data objects, like we see above, are called _subdocuments_.
+
+The above approach of embedding "contact" data provides a great deal of flexibility in what types and how many contacts a person may have.
+
+Another example of a data model where embedding works well is the typical a _post_ has many _comments_ scenario. Embedding comments within a _post_ document works great because those comments don't make sense without the post that they belong to.
 
