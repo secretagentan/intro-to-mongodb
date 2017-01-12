@@ -1,9 +1,12 @@
 ## In your squads research these questions
 
-Spend 45 minutes researching and answering the following questions.
+Spend 1 hour researching and answering the following questions.
 
 - What is a database?
 - How is accessing data from a database different from accessing data from a plain text file?
+- What does the acronym CRUD stand for? 
+- In JavaScript what would the CRUD operations on an object or array be?
+- In Databases what is an "atomic transaction"?
 - Why would you use a database for web development?
 - What is NoSQL?
 - What is MongoDB?
