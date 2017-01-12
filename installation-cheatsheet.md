@@ -11,17 +11,19 @@ If you receive an error, lets use _Homebrew_ to install MongoDB:
 
 MongoDB by default will look for data in a folder named `/data/db`. We would have had to create this folder, but Homebrew did it for us (hopefully).
 
-#### Start Your Engine
+#### Start Your Engines!
 
-`mongod` is the name of the actual database engine process. The installation of MongoDB does not set mongoDB to start automatically. A common source of errors when starting to work with MongoDB is forgetting to start the database engine.
+`mongod` is the name of the actual database server process. The installation of MongoDB does not set mongoDB to start automatically. A common source of errors when starting to work with MongoDB is forgetting to start the database server.
 
-To start the database engine, type `mongod` in terminal.
+To start the database server, type `mongod` in terminal.
 
-Press `control-c` to stop the engine. **Don't just shut the terminal window.**
+Press `control-c` to stop the server. **Don't just shut the terminal window.**
 
-MongoDB installs with a client app, a JavaScript-based shell, that allows us to interact with MongoDB directly. To enter the shell open another terminal window and type
+MongoDB installs with a client app, a JavaScript-based shell, that allows us to interact with MongoDB directly. To enter the shell open __another__ terminal window and type:
 
  `mongo`
+
+> NOTE! Because `mongod` is a __server__ an we're accessing it as a __client__ we're communicating via __ports__ so we can run our commands from any directory.
 
 The app will load and the prompt will change to `>`.
 
